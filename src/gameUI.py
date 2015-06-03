@@ -1,11 +1,24 @@
 __author__ = 'plaix'
-import pygame
-import sys
-from pygame.locals import *
+#Version 0.1
+#Tower of Hanoi by Sotaya
+#__________________________________________________________
+
+try:
+    import pygame
+    import sys
+    import os
+    from lib import *
+    from pygame.locals import *
+except ImportError, err:
+    print "Couldnt load module %s" % (err)
+    sys.exit(3)
+
+DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'data/')
+
 
 #Window Conf
-WIDTH = 640
-HEIGHT = 480
+WIDTH = 540
+HEIGHT = 380
 BEGIN = 10
 
 #Initialization
@@ -13,9 +26,13 @@ pygame.init()
 DISPLAYSURF = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Tower of Hanoi')
 
+#___________________________________________________________
+
 #Settings
 FPS = 30
 fpsClock = pygame.time.Clock()
+
+#___________________________________________________________
 
 #Colors
 BLACK = pygame.Color(0, 0, 0)
@@ -24,22 +41,47 @@ WHITE = pygame.Color(255, 255, 255)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 128)
 
-DISPLAYSURF.fill(BLACK)
+#DISPLAYSURF.fill(BLACK)
 
 #Write Text
-fontObj = pygame.font.Font('freesansbold.ttf', 20)
-textSurfaceObj = fontObj.render('Tower of Hanoi Level: 1', True, BLUE)
+fontObj = pygame.font.Font('freesansbold.ttf', 15)
+textSurfaceObj = fontObj.render('Tower of Hanoi Level: 1', True, WHITE)
 textRectObj = textSurfaceObj.get_rect()
-textRectObj.center = (320, 20)
+textRectObj.center = (WIDTH/2, 20)
+
+#Objects and variables
+towers_x = 20
+towers_y = 200
+disks_x = 15
+disks_y = 320
+TOWER_1 = load_image('tower.png')
+TOWER_2 = load_image('tower.png')
+TOWER_3 = load_image('tower.png')
+DISK_1 = load_image('disk.png')
+DISK_2 = load_image('disk.png')
+DISK_3 = load_image('disk.png')
+TOWER_1[1].y = towers_y
+TOWER_2[1].y = towers_y
+TOWER_3[1].y = towers_y
+TOWER_1[1].x = towers_x
+TOWER_2[1].x = towers_x + 200
+TOWER_3[1].x = towers_x + 400
+DISK_1[1].y = disks_y
+DISK_1[1].x = disks_x
+DISK_2[1].y = disks_y
+DISK_3[1].y = disks_y
 
 #pygame.draw.circle(DISPLAYSURF, PINK, (x, y), 10)
 while True:
-    DISPLAYSURF.fill(WHITE)
-    DISPLAYSURF.blit(textSurfaceObj, textRectObj)
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
-            sys.quit()
-
+            sys.exit()
+    DISPLAYSURF.fill(BLACK)
+    DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+    DISPLAYSURF.blit(TOWER_1[0], TOWER_1[1])
+    DISPLAYSURF.blit(TOWER_2[0], TOWER_2[1])
+    DISPLAYSURF.blit(TOWER_3[0], TOWER_3[1])
+    DISPLAYSURF.blit(DISK_1[0], DISK_1[1])
     pygame.display.update()
     fpsClock.tick(FPS)
