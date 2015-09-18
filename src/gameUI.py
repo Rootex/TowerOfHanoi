@@ -2,15 +2,15 @@ __author__ = 'plaix'
 #Version 0.1
 #Tower of Hanoi by Sotaya
 #__________________________________________________________
+import sys
 
 try:
     import pygame
-    import sys
     import os
-    from lib import *
+    from lib import load_image
     from pygame.locals import *
-except ImportError, err:
-    print "Couldnt load module %s" % (err)
+except ImportError as err:
+    print("Couldnt load module %s" % err)
     sys.exit(3)
 
 DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'data/')
