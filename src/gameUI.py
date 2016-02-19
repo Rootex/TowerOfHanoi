@@ -1,7 +1,7 @@
 __author__ = 'plaix'
-#Version 0.1
-#Tower of Hanoi by Sotaya
-#__________________________________________________________
+# Version 0.1
+# Tower of Hanoi by Sotaya
+# __________________________________________________________
 import sys
 
 try:
@@ -15,41 +15,40 @@ except ImportError as err:
 
 DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'data/')
 
-
-#Window Conf
+# Window Conf
 WIDTH = 540
 HEIGHT = 380
 BEGIN = 10
 
-#Initialization
+# Initialization
 pygame.init()
 DISPLAYSURF = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Tower of Hanoi')
 
-#___________________________________________________________
+# ___________________________________________________________
 
-#Settings
+# Settings
 FPS = 30
 fpsClock = pygame.time.Clock()
 
-#___________________________________________________________
+# ___________________________________________________________
 
-#Colors
+# Colors
 BLACK = pygame.Color(0, 0, 0)
 PINK = pygame.Color(255, 192, 192)
 WHITE = pygame.Color(255, 255, 255)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 128)
 
-#DISPLAYSURF.fill(BLACK)
+# DISPLAYSURF.fill(BLACK)
 
-#Write Text
+# Write Text
 fontObj = pygame.font.Font('freesansbold.ttf', 15)
 textSurfaceObj = fontObj.render('Tower of Hanoi Level: 1', True, WHITE)
 textRectObj = textSurfaceObj.get_rect()
-textRectObj.center = (WIDTH/2, 20)
+textRectObj.center = (WIDTH / 2, 20)
 
-#Objects and variables
+# Objects and variables
 towers_x = 20
 towers_y = 200
 disks_x = 15
@@ -71,7 +70,7 @@ DISK_1[1].x = disks_x
 DISK_2[1].y = disks_y
 DISK_3[1].y = disks_y
 
-#pygame.draw.circle(DISPLAYSURF, PINK, (x, y), 10)
+# pygame.draw.circle(DISPLAYSURF, PINK, (x, y), 10)
 while True:
     for event in pygame.event.get():
         if event.type == QUIT:

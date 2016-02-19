@@ -1,5 +1,6 @@
 __author__ = 'plaix'
 import sys
+
 try:
     import pygame
     import os
@@ -9,6 +10,7 @@ except ImportError as err:
     sys.exit(3)
 
 DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'data/')
+
 
 def load_image(name):
     """ Load image and return image object """
