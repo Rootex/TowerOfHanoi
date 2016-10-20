@@ -17,7 +17,7 @@ def load_image(name):
     fullname = DATA_PATH + name
     try:
         image = pygame.image.load(fullname)
-        if image.get_alpha() == None:
+        if image.get_alpha() is None:
             image = image.convert()
         else:
             image = image.convert_alpha()
