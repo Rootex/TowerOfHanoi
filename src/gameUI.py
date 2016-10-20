@@ -72,8 +72,11 @@ DISK_1[1].y = disks_y
 # Game Loop
 # pygame.draw.circle(DISPLAYSURF, PINK, (x, y), 10)
 disk = None
+tower1 = None
+tower2 = None
+tower3 = None
 held = False
-mx,my = pygame.mouse.get_pos()
+
 while True:
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -82,18 +85,24 @@ while True:
         if event.type == MOUSEBUTTONDOWN:
             if disk.collidepoint(pygame.mouse.get_pos()):
                 held = True
-        if held:
-            DISK_1[1].x, DISK_1[1].y = pygame.mouse.get_pos()
-        if event.type == pygame.MOUSEBUTTONUP:
+        elif event.type == pygame.MOUSEBUTTONUP:
+            if DISK_1[1].colliderect(TOWER_2[1]):
+                disks_x = TOWER_2[1].x
+            elif DISK_1[1].colliderect(TOWER_3[1]):
+                disks_x = TOWER_3[1].x
+            elif DISK_1[1].colliderect(TOWER_1[1]):
+                disks_x = TOWER_1[1].x
             DISK_1[1].x = disks_x
             DISK_1[1].y = disks_y
             held = False
+        if held:
+            DISK_1[1].x, DISK_1[1].y = pygame.mouse.get_pos()
 
     DISPLAYSURF.fill(BLACK)
     DISPLAYSURF.blit(textSurfaceObj, textRectObj)
-    DISPLAYSURF.blit(TOWER_1[0], TOWER_1[1])
-    DISPLAYSURF.blit(TOWER_2[0], TOWER_2[1])
-    DISPLAYSURF.blit(TOWER_3[0], TOWER_3[1])
+    tower1 = DISPLAYSURF.blit(TOWER_1[0], TOWER_1[1])
+    tower2 = DISPLAYSURF.blit(TOWER_2[0], TOWER_2[1])
+    tower3 = DISPLAYSURF.blit(TOWER_3[0], TOWER_3[1])
     disk = DISPLAYSURF.blit(DISK_1[0], DISK_1[1])
     pygame.display.update()
     fpsClock.tick(FPS)
